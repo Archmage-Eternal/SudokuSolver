@@ -13,7 +13,7 @@ def is_empty(grid, loc):
             if grid[i][j] == 0:
                 loc[0] = i
                 loc[1] = j
-            return True
+                return True
     return False
 
 
@@ -76,10 +76,10 @@ def is_safe(grid, row, column, num):
 
 def solver(grid):
     loc = [0, 0]
-    row = loc[0]
-    column = loc[1]
     if not is_empty(grid, loc):
         return True
+    row = loc[0]
+    column = loc[1]
     for num in range(1, 10):
         if is_safe(grid, row, column, num):
             grid[row][column] = num
@@ -96,16 +96,16 @@ def print_sudoku(grid):
 
 if __name__ == "__main__":
     grid = [[0 for _ in range(9)] for _ in range(9)]
-    grid = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+    grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
+            [5, 2, 0, 0, 0, 0, 0, 0, 0],
+            [0, 8, 7, 0, 0, 0, 0, 3, 1],
+            [0, 0, 3, 0, 1, 0, 0, 8, 0],
+            [9, 0, 0, 8, 6, 3, 0, 0, 5],
+            [0, 5, 0, 0, 9, 0, 6, 0, 0],
+            [1, 3, 0, 0, 0, 0, 2, 5, 0],
+            [0, 0, 0, 0, 0, 0, 0, 7, 4],
+            [0, 0, 5, 2, 0, 6, 3, 0, 0]]
     if solver(grid):
         print_sudoku(grid)
     else:
-        print('There is no valid solution')
+        print('There is no valid solution.')
