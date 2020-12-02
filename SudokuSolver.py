@@ -1,12 +1,12 @@
 def is_empty(grid, loc):
-    '''Functin to find an empty space in the grid.
+    '''Function to find an empty space in the grid.
 
     Args:
-        grid (List): The complete Sucoku.
+        grid (List): The complete Sudoku.
         loc (List): The coordinated of the empty space.
 
     Returns:
-        Bool: True if the space is empty False if oherwise.
+        Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(9):
         for j in range(9):
@@ -18,7 +18,7 @@ def is_empty(grid, loc):
 
 
 def in_row(grid, row, num):
-    '''Function to check whether the number is persent in the current row.
+    '''Function to check whether the number is present in the current row.
 
     Args:
         grid (List): Thw complete Sudoku.
@@ -26,7 +26,7 @@ def in_row(grid, row, num):
         num (Integer): The number for which we are performing the check.
 
     Returns:
-        Bool: True if the number is present in the row and False otherwise.
+        Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(9):
         if grid[row][i] == num:
@@ -35,7 +35,7 @@ def in_row(grid, row, num):
 
 
 def in_cloumn(grid, column, num):
-    '''Function to check whether the number is persent in the current column.
+    '''Function to check whether the number is present in the current column.
 
     Args:
         grid (List): Thw complete Sudoku.
@@ -43,7 +43,7 @@ def in_cloumn(grid, column, num):
         num (Integer): The number for which we are performing the check.
 
     Returns:
-        Bool: True if the number is present in the cloumn and False otherwise.
+        Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(9):
         if grid[i][column] == num:
@@ -52,7 +52,7 @@ def in_cloumn(grid, column, num):
 
 
 def in_box(grid, row, column, num):
-    '''Function to check whether the number is persent in the box.
+    '''Function to check whether the number is present in the box.
 
     Args:
         grid (List): The complete Sudoku.
@@ -61,7 +61,7 @@ def in_box(grid, row, column, num):
         num (Integer): The number for which we are performing the check.
 
     Returns:
-        Bool: True if the number is present in the box and False otherwise.
+        Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(3):
         for j in range(3):
