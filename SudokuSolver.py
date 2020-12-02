@@ -71,10 +71,30 @@ def in_box(grid, row, column, num):
 
 
 def is_safe(grid, row, column, num):
+    '''Function to call the row, column and box chech funtions.
+
+    Args:
+        grid (List): The entire Sudoku.
+        row (Integer): The row to be checked.
+        column (Integer): The column to be checked.
+        num (Integer): The number for which we are performing the check.
+
+    Returns:
+        Bool: True is all the checks return a True value, False if otherwise.
+    '''
     return not in_row(grid, row, num) and not in_cloumn(grid, column, num) and not in_box(grid, row - row % 3, column - column % 3, num)
 
 
 def solver(grid):
+    '''Function to solve the given Sudoku.
+
+    Args:
+        grid (List): The intire Sudoku.
+
+    Returns:
+        Bool: True if the tentative assignment of the number to a cell  is correct, False is otherwise. 
+        The boolean is also used to decide whether or not a solution exists for the given Sudoku. 
+    '''
     loc = [0, 0]
     if not is_empty(grid, loc):
         return True
