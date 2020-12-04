@@ -89,7 +89,7 @@ def solver(grid):
     '''Function to solve the given Sudoku.
 
     Args:
-        grid (List): The intire Sudoku.
+        grid (List): The entire Sudoku.
 
     Returns:
         Bool: True if the tentative assignment of the number to a cell  is correct, False is otherwise. 
@@ -115,16 +115,12 @@ def print_sudoku(grid):
 
 
 if __name__ == "__main__":
-    grid = [[0 for _ in range(9)] for _ in range(9)]
-    grid = [[3, 0, 6, 5, 0, 8, 4, 0, 0],
-            [5, 2, 0, 0, 0, 0, 0, 0, 0],
-            [0, 8, 7, 0, 0, 0, 0, 3, 1],
-            [0, 0, 3, 0, 1, 0, 0, 8, 0],
-            [9, 0, 0, 8, 6, 3, 0, 0, 5],
-            [0, 5, 0, 0, 9, 0, 6, 0, 0],
-            [1, 3, 0, 0, 0, 0, 2, 5, 0],
-            [0, 0, 0, 0, 0, 0, 0, 7, 4],
-            [0, 0, 5, 2, 0, 6, 3, 0, 0]]
+    grid = list()
+    for _ in range(9):
+        row = list(map(int, input().split()))
+        print(row)
+        grid.append(row)
+    print(grid)
     if solver(grid):
         print_sudoku(grid)
     else:
