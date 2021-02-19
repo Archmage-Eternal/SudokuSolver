@@ -17,7 +17,7 @@ def is_empty(grid, loc):
     return False
 
 
-def in_row(grid, row, num):
+def in_row(grid, row, column, num):
     '''Function to check whether the number is present in the current row.
 
     Args:
@@ -29,12 +29,12 @@ def in_row(grid, row, num):
         Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(9):
-        if grid[row][i] == num:
+        if grid[row][i] == num and column != i:
             return True
     return False
 
 
-def in_cloumn(grid, column, num):
+def in_cloumn(grid, row, column, num):
     '''Function to check whether the number is present in the current column.
 
     Args:
@@ -46,7 +46,7 @@ def in_cloumn(grid, column, num):
         Bool: True if the space is empty, False if oherwise.
     '''
     for i in range(9):
-        if grid[i][column] == num:
+        if grid[i][column] == num and row != i:
             return True
     return False
 
@@ -65,13 +65,13 @@ def in_box(grid, row, column, num):
     '''
     for i in range(3):
         for j in range(3):
-            if grid[row+i][column+j] == num:
+            if grid[row+i][column+j] == num and row != i and column != j:
                 return True
     return False
 
 
 def is_safe(grid, row, column, num):
-    '''Function to call the row, column and box chech funtions.
+    '''Function to call the row, column and box check funtions.
 
     Args:
         grid (List): The entire Sudoku.
@@ -85,7 +85,7 @@ def is_safe(grid, row, column, num):
     return not in_row(grid, row, num) and not in_cloumn(grid, column, num) and not in_box(grid, row - row % 3, column - column % 3, num)
 
 
-def solver(grid):
+def solve_puzzle(grid):
     '''Function to solve the given Sudoku.
 
     Args:
@@ -103,13 +103,18 @@ def solver(grid):
     for num in range(1, 10):
         if is_safe(grid, row, column, num):
             grid[row][column] = num
-            if solver(grid):
+            if solve_puzzle(grid):
                 return True
             grid[row][column] = 0
     return False
 
 
 def print_sudoku(grid):
+    '''Fundtion to print the Sudoku grid.
+
+    Args:
+        grid (List): The entire Sudoku.
+    '''
     for row in grid:
         print(row)
 
@@ -121,7 +126,7 @@ if __name__ == "__main__":
         print(row)
         grid.append(row)
     print(grid)
-    if solver(grid):
+    if solve_puzzle(grid):
         print_sudoku(grid)
     else:
         print('There is no valid solution.')
