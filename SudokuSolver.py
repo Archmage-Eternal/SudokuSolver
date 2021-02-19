@@ -82,7 +82,7 @@ def is_safe(grid, row, column, num):
     Returns:
         Bool: True is all the checks return a True value, False if otherwise.
     '''
-    return not in_row(grid, row, num) and not in_cloumn(grid, column, num) and not in_box(grid, row - row % 3, column - column % 3, num)
+    return not in_row(grid, row, column, num) and not in_cloumn(grid, row, column, num) and not in_box(grid, row - row % 3, column - column % 3, num)
 
 
 def solve_puzzle(grid):
