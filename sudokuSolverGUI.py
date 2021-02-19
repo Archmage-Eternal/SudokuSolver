@@ -97,13 +97,33 @@ class Grid:
         return True
 
     def quickSolve(self):
-        solution = self.board
+        solution = self.board[:]
         SudokuSolver.solve_puzzle(solution)
         for row in range(9):
             for col in range(9):
                 if self.squares[row][col].value == 0:
                     self.squares[row][col].set(solution[row][col])
         self.updateModel()
+
+    def visualSolve(self):
+        time.sleep(0.1)
+        vis_sol = self.board[:]
+        loc = [0, 0]
+        if not SudokuSolver.is_empty(vis_sol, loc):
+            return True
+        row = loc[0]
+        col = loc[1]
+        for num in range(1, 10):
+            if SudokuSolver.is_safe(vis_sol, row, col, num):
+                vis_sol[row][col] = num
+                self.squares[row][col].set(num)
+                self.select(row, col)
+                redraw_window(win, board, play_time)
+                pygame.display.update()
+                if self.visualSolve():
+                    return True
+                vis_sol[row][col] = 0
+        return False
 
 
 class Square:
@@ -175,6 +195,8 @@ if __name__ == '__main__':
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     board.quickSolve()
+                if event.key == pygame.K_v:
+                    board.visualSolve()
                 if event.key == pygame.K_1:
                     key = 1
                 if event.key == pygame.K_2:
