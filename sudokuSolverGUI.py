@@ -96,6 +96,15 @@ class Grid:
 
         return True
 
+    def quickSolve(self):
+        solution = self.board
+        SudokuSolver.solve_puzzle(solution)
+        for row in range(9):
+            for col in range(9):
+                if self.squares[row][col].value == 0:
+                    self.squares[row][col].set(solution[row][col])
+        self.updateModel()
+
 
 class Square:
     rows = 9
@@ -164,6 +173,8 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT:
                 pygame.quit()
             if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    board.quickSolve()
                 if event.key == pygame.K_1:
                     key = 1
                 if event.key == pygame.K_2:
